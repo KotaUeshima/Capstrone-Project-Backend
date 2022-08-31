@@ -12,3 +12,7 @@ gem "bcrypt", "~> 3.1.7"
 Create User Model
 rails g resource user username password_digest --no-test-framework
 rails db:migrate
+
+Error Handling
+In config/environments/development.rb
+config.hosts.clear
