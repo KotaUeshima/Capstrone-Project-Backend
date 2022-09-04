@@ -13,6 +13,6 @@ class SongsController < ApplicationController
     private
 
     def song_params
-        params.permit(:title, :artist, :user_id, :lat, :lng)
+        params.permit(:title, :artist, :user_id, :lat, :lng, :image_url, :spotify_url)
     end
 end
