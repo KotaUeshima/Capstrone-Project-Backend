@@ -1,5 +1,5 @@
 class SongsController < ApplicationController
-    skip_before_action :authorized, only: [:index, :create]
+    skip_before_action :authorized, only: [:index, :create, :show]
 
     def index
         render json: Song.all
@@ -8,6 +8,12 @@ class SongsController < ApplicationController
     def create
         song = Song.create(song_params)
         render json: song, status: :created
+    end
+
+    def show
+        user = User.find(params[:id])
+        songs = user.songs
+        render json: songs
     end
 
     private
