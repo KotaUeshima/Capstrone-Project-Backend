@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    skip_before_action :authorized, only: [:create]
+    skip_before_action :authorized, only: [:create, :index]
     rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
   
     def record_invalid invalid
@@ -18,6 +18,10 @@ class UsersController < ApplicationController
 
     def show
         render json: {user: UserSerializer.new(@user)}
+    end
+
+    def index
+        render json: User.all
     end
 
     private
