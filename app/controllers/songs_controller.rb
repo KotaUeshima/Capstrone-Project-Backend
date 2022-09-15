@@ -13,7 +13,7 @@ class SongsController < ApplicationController
     def show
         user = User.find(params[:id])
         songs = user.songs
-        render json: songs
+        render json: songs.reverse
     end
 
     private

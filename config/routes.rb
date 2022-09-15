@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   get '/user_songs/:id', to: 'songs#show'
   post '/login', to: 'auth#create'
   get '/me', to: 'users#show'
+  get '/count', to: 'users#count'
 end

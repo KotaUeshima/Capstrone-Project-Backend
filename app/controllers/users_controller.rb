@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    skip_before_action :authorized, only: [:create, :index]
+    skip_before_action :authorized, only: [:create, :index, :count]
     rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
   
     def record_invalid invalid
@@ -22,6 +22,10 @@ class UsersController < ApplicationController
 
     def index
         render json: User.all
+    end
+
+    def count
+        render json: {user: User.all.count, song: Song.all.count}
     end
 
     private
