@@ -19,7 +19,15 @@ bundle install faker
 bundle install active_model_serializers
 ```
 
-### Chnage
+Serializer what attributes are rendered when the object/model is converted into JSON
+
+```
+class UserSerializer < ActiveModel::Serializer
+  attributes :id, :username
+end
+```
+
+### Edit
 
 ```
 gem 'jwt', '~> 2.2'
@@ -32,27 +40,28 @@ gem "rack-cors"
 gem "bcrypt", "~> 3.1.7"
 ```
 
-Create User Model:
-'''
-rails g resource user username password_digest --no-test-framework
-rails db:migrate
-'''
-
-Error Handling
-In config/environments/development.rb
-'config.hosts.clear'
-
-```
-
 ## Rails Notes
+
+### Create Project
 
 Create project without without testing files (-T), with PostgreSQL database (-d=postgresql), API only application (--api)
 
 ```
-
 rails new example-project -T -d=postgresql --api
+```
+
+### Adding Dependencies
+
+- gem install - add globally on your machine
+- bundle install - add locally to project
+
+### Create User Model:
+
+Use **rails generate** to create migration with **username** and **password_digest** fields, creates User model, UsersController and routes
 
 ```
-gem install - add globally on your machine
-bundle install - add locally to project
+rails g resource user username password_digest --no-test-framework
+rails db:migrate
 ```
+
+**rails g scaffold** is even more estnesive
