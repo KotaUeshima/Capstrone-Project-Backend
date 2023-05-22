@@ -1,6 +1,6 @@
 # Globify Backend
 
-This is a backend API for Globfiy, using Ruby on Rails.
+This is a backend API for Globify, using Ruby on Rails.
 
 ## Setup
 
