@@ -60,7 +60,7 @@ rails new example-project -T -d=postgresql --api
 Use **rails generate** to create migration with **username** and **password_digest** fields, creates User model, UsersController and routes
 
 ```
-rails g resource user username password_digest --no-test-framework
+rails g resource user username:string password_digest:string --no-test-framework
 rails db:migrate
 ```
 

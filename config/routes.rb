@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  # Creates RESTful routes for songs
+  # Create all RESTful routes
+  # can limit with "resources :users, only: [:index, :show]"
   resources :songs
-  # Limits RESTful routes to create and index
-  resources :users, only: [:create, :index]
+  resources :users
   get '/user_songs/:id', to: 'songs#show'
   post '/login', to: 'auth#create'
   get '/me', to: 'users#show'
