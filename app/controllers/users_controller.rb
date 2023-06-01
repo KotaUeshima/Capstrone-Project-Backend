@@ -52,15 +52,6 @@ class UsersController < ApplicationController
         end
     end
 
-    # def count
-    #     render json: {user: User.all.count, song: Song.all.count}
-    # end
-
-    # not sure for another route
-    # def show
-    #     render json: {user: UserSerializer.new(@user)}
-    # end
-
     private
     # restrict parameters for user to be username and password
     def user_params
