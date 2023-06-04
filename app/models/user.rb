@@ -4,19 +4,26 @@ class User < ApplicationRecord
     has_secure_password
 
     # Validating username for uniqueness, disregarding case_sensitivity
-    validates :username, presence: true, uniqueness: { case_sensitive: false }
+    validates :email, presence: true, uniqueness: { case_sensitive: false }
     # Validates password for length
     validates :password, presence: true, length: {minimum: 8, message: "must be at least 8 characters"}
-    # Custom validation methods for number and uppercase 
+    # Custom Validations
+    validate :correct_email_syntax
+    validate :contains_upper_case
     validate :contains_number
-    validate :upper_case
+
+
+    def correct_email_syntax
+        return if email.match(/\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i)
+        errors.add :email, 'invalid syntax'
+    end
 
     def contains_number
         return if password.match(/[0-9]/)
         errors.add :password, 'must contain at least one number'
     end
 
-    def upper_case
+    def contains_upper_case
         return if password.match(/[A-Z]/)
         errors.add :password, 'must contain at least 1 uppercase'
     end

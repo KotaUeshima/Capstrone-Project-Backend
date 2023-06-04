@@ -3,7 +3,7 @@ class AuthController < ApplicationController
 
     # login user and create JWT token
     def login
-        @user = User.find_by(username: user_login_params[:username])
+        @user = User.find_by(email: user_login_params[:email])
         
         if @user && @user.authenticate(user_login_params[:password])
           @token = encode_token({user_id: @user.id})
@@ -11,7 +11,7 @@ class AuthController < ApplicationController
        elsif @user
           render json: { error: "Invalid password"}, status: :unauthorized
        else
-          render json: { error: "Username does not exist"}, status: :unauthorized
+          render json: { error: "Email does not exist"}, status: :unauthorized
       end
     end
 
@@ -23,6 +23,6 @@ class AuthController < ApplicationController
     private
 
     def user_login_params
-        params.require(:user).permit(:username, :password)
+        params.require(:user).permit(:email, :password)
     end
 end
