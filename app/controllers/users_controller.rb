@@ -26,11 +26,11 @@ class UsersController < ApplicationController
         render json: {user: UserSerializer.new(@user), status: :created}
     end
 
-    # PUTS /users/:id
+    # PATCH /users/:id
     def update
         if @user
-            @user.update!(user_params)
-            render json: {user: @user, status: :ok}
+            @user.update!(update_user_params)
+            render json: {user: UserSerializer.new(@user), status: :ok}
         else
             render json: {message: "User does not exist", status: :bad_request}
         end
@@ -51,6 +51,11 @@ class UsersController < ApplicationController
     def user_params
         params.require(:user).permit(:firstName, :lastName, :email, :password)
     end
+
+    def update_user_params
+        params.require(:user).permit(:firstName, :lastName, :email)
+    end
+
     # find user instance based on incoming id number
     def find_user 
         @user = User.find(params[:id])
