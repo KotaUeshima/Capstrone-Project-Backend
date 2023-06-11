@@ -1,5 +1,5 @@
 class SongsController < ApplicationController
-    skip_before_action :authorized, only: [:index, :create, :show]
+    skip_before_action :authorized, only: [:index, :create, :show, :top_five]
 
     # GET /songs
     def index
@@ -18,6 +18,12 @@ class SongsController < ApplicationController
     def create
         song = Song.create(song_params)
         render json: song, status: :created
+    end
+
+    # TOP_FIVE
+    def top_five
+        songs = Song.group(:title, :artist, :image_url).limit(5).order(Arel.sql('COUNT(title) DESC')).pluck(:title, :artist, :image_url, Arel.sql('COUNT(title)'))
+        render json: songs, status: :ok
     end
 
     private
