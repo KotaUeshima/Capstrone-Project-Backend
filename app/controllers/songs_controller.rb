@@ -6,12 +6,10 @@ class SongsController < ApplicationController
         render json: Song.all
     end
 
-    # showing songs by User I not Song Id
     # GET /songs/:id
     def show
-        user = User.find(params[:id])
-        songs = user.songs
-        render json: songs.reverse
+        @song = Song.find(params[:id])
+        render json: @song
     end
 
     # POST /songs

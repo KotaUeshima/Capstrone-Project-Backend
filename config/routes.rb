@@ -3,9 +3,7 @@ Rails.application.routes.draw do
   # can limit with "resources :users, only: [:index, :show]"
   resources :songs
   resources :users
-  # get all of a user's songs
-  get '/user_songs/:id', to: 'songs#show'
-  # top ten rout
+  # top ten route
   get '/top_five', to: 'songs#top_five'
   # login functionality
   post '/login', to: 'auth#login'

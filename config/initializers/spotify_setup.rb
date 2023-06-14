@@ -1,0 +1,1 @@
+RSpotify::authenticate("40ff9b6a103d498382bd8bf9b1809896", ENV["SPOTIFY_SECRET"])
