@@ -1,10 +1,12 @@
 # Globify Backend
 
-This is a backend API for Globify, using Ruby on Rails.
+This is a backend API for Globify2.0 application (https://github.com/KotaUeshima/globify-frontend2.0)
 
 ## Setup
 
-Run rails server
+Clone down this repository.
+
+Run rails server:
 
 ```
 rails s
@@ -12,56 +14,45 @@ rails s
 
 ## Gems
 
-### Add
+Added Gems:
 
 ```
-bundle install faker
-bundle install active_model_serializers
+gem "active_model_serializers", "~> 0.10.13"
+gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'main'
+gem "net-http"
+gem 'rspotify'
 ```
 
-Serializer what attributes are rendered when the object/model is converted into JSON
-
-```
-class UserSerializer < ActiveModel::Serializer
-  attributes :id, :username
-end
-```
-
-### Edit
-
-```
-gem 'jwt', '~> 2.2'
-```
-
-### Uncomment
+Uncommented Gems:
 
 ```
 gem "rack-cors"
 gem "bcrypt", "~> 3.1.7"
 ```
 
-## Rails Notes
-
-### Create Project
-
-Create project without without testing files (-T), with PostgreSQL database (-d=postgresql), API only application (--api)
+Edited Gems:
 
 ```
-rails new example-project -T -d=postgresql --api
+gem 'jwt', '~> 2.2'
 ```
 
-### Adding Dependencies
+Install gems:
 
-- gem install - add globally on your machine
-- bundle install - add locally to project
+```
+bundle install
+```
 
-### Create User Model:
+Install gems globally (not recommended):
 
-Use **rails generate** to create migration with **username** and **password_digest** fields, creates User model, UsersController and routes
+```
+gem install
+```
+
+## How to Create Model in Rails?
+
+Use rails generate to create migration with username and password_digest fields, creates User model, UsersController and routes
 
 ```
 rails g resource user username:string password_digest:string --no-test-framework
 rails db:migrate
 ```
-
-**rails g scaffold** is even more estnesive
