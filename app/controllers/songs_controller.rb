@@ -1,5 +1,5 @@
 class SongsController < ApplicationController
-    skip_before_action :authorized, only: [:index, :create, :show, :top_five]
+    skip_before_action :authorized, only: [:index, :create, :show, :destroy, :top_five]
 
     # GET /songs
     def index
@@ -16,6 +16,17 @@ class SongsController < ApplicationController
     def create
         song = Song.create(song_params)
         render json: song, status: :created
+    end
+
+    # DELETE /songs/:id
+    def destroy
+        @song = Song.find(params[:id])
+        if @song
+            @song.destroy
+            render json: {message: "Succesfully deleted song", status: :ok}
+        else
+            render json: {message: "User does not exist", status: :bad_request}
+        end
     end
 
     # TOP_FIVE
